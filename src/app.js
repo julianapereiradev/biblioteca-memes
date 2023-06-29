@@ -10,21 +10,24 @@ app.use(express.json())
 
 const memes = []
 
+// Function to get a random meme:
 function getRandomItem(arr) {
-
-    // get random index value
     const randomIndex = Math.floor(Math.random() * arr.length);
-
-    // get random item
     const item = arr[randomIndex];
-
     return item;
 }
 
 
 // Funções (endpoints):
 app.get("/memes", (req, res) => {
-    res.status(201).send(memes)
+
+    const {category} = req.query
+
+    if(category) {
+    const onlyCategories = memes.filter((meme) => meme.category === category)
+    return res.status(200).send(onlyCategories)
+}
+    res.status(200).send(memes)
 })
 
 app.post("/memes", (req, res) => {
