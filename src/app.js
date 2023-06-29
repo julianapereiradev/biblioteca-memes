@@ -1,10 +1,10 @@
 import  express  from "express";
 import cors from 'cors';
 
-// Criação do app:
+// Created app:
 const app = express();
 
-// Configurações: 
+// Settings: 
 app.use(cors())
 app.use(express.json())
 
@@ -17,8 +17,7 @@ function getRandomItem(arr) {
     return item;
 }
 
-
-// Funções (endpoints):
+// Endpoints:
 app.get("/memes", (req, res) => {
 
     const {category} = req.query
@@ -45,5 +44,6 @@ app.get("/memes/random", (req, res) => {
     res.status(201).send(getRandomItem(memes));
 })
 
+// Sever PORT: 
 const PORT = 5000
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
