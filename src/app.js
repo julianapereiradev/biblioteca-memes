@@ -10,6 +10,18 @@ app.use(express.json())
 
 const memes = []
 
+function getRandomItem(arr) {
+
+    // get random index value
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    // get random item
+    const item = arr[randomIndex];
+
+    return item;
+}
+
+
 // Funções (endpoints):
 app.get("/memes", (req, res) => {
     res.status(201).send(memes)
@@ -26,9 +38,9 @@ app.post("/memes", (req, res) => {
     res.status(201).send("POST do meme feito com sucesso!")
 })
 
-// app.get("/memes/random", (req, res) => {
-
-// })
+app.get("/memes/random", (req, res) => {
+    res.status(201).send(getRandomItem(memes));
+})
 
 const PORT = 5000
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
